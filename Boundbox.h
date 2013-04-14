@@ -1,8 +1,8 @@
 #ifndef BOUNDBOX_H
 #define BOUNDBOX_H
 #include "battlecraft.h"
-#include "GLVertexArray.h"
 #include "LineShader.h"
+#include "LineObject.h"
 
 class Boundbox : public GLVertexArray
 {
@@ -13,12 +13,10 @@ public:
 
 protected:
     void create();
-    void enable();
-    void disable();
 
 private:
     int sizeX, sizeY, sizeZ;
-    GLVertexBuffer* geometry;
+    LineObject* box;
     mat4 model;
     vec3 position;
     Color color;

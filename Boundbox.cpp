@@ -9,9 +9,7 @@ Boundbox::Boundbox(int sizex, int sizey, int sizez)
     sizeY = sizey;
     sizeZ = sizez;
 
-    geometry = new GLVertexBuffer(GL_LINES);
-    geometry->point(LINESH_ATTR_POSITION, GL_UNSIGNED_BYTE, 3, 0, LINESH_VERTEX_SIZE, GL_FALSE);
-    geometry->point(LINESH_ATTR_COLOR,    GL_UNSIGNED_BYTE, 4, 3, LINESH_VERTEX_SIZE, GL_TRUE);
+    box = new LineObject();
 
     position = vec3(0);
     model = glm::translate(mat4(1.0f), position);
@@ -22,7 +20,7 @@ Boundbox::Boundbox(int sizex, int sizey, int sizez)
 
 Boundbox::~Boundbox()
 {
-    delete geometry;
+    delete box;
 }
 
 void Boundbox::create()
@@ -60,27 +58,12 @@ void Boundbox::create()
     _vertex(sizeX,sizeY,sizeZ,color);
     _vertex(sizeX,sizeY,0,color);
 
-    geometry->bufferData(buffer, LINESH_VERTEX_SIZE, v);
+    box->bufferData(buffer, v);
     free(buffer);
-}
-
-void Boundbox::enable()
-{
-    glEnableVertexAttribArray(LINESH_ATTR_POSITION);
-    glEnableVertexAttribArray(LINESH_ATTR_COLOR);
-}
-
-void Boundbox::disable()
-{
-    glDisableVertexAttribArray(LINESH_ATTR_COLOR);
-    glDisableVertexAttribArray(LINESH_ATTR_POSITION);
 }
 
 void Boundbox::draw(LineShader* linesh)
 {
     linesh->setUniformMatrix("model", &model);
-    bind();
-    enable();
-    geometry->draw();
-    disable();
+    box->draw();
 }

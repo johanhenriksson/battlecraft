@@ -18,28 +18,18 @@ VoxelObject::~VoxelObject()
 void VoxelObject::draw()
 {
     bind();
-    enable();
+    glEnableVertexAttribArray(VOXELSH_ATTR_POSITION);
+    glEnableVertexAttribArray(VOXELSH_ATTR_COLOR);
+    glEnableVertexAttribArray(VOXELSH_ATTR_LIGHT);
+    glEnableVertexAttribArray(VOXELSH_ATTR_NORMAL);
     voxelBuffer->draw();
-    disable();
+    glDisableVertexAttribArray(VOXELSH_ATTR_NORMAL);
+    glDisableVertexAttribArray(VOXELSH_ATTR_LIGHT);
+    glDisableVertexAttribArray(VOXELSH_ATTR_COLOR);
+    glDisableVertexAttribArray(VOXELSH_ATTR_POSITION);
 }
 
 void VoxelObject::bufferData(byte* data, int elements)
 {
     voxelBuffer->bufferData((void*)data, VOXELSH_VERTEX_SIZE, elements);
-}
-
-void VoxelObject::enable()
-{
-    glEnableVertexAttribArray(VOXELSH_ATTR_POSITION);
-    glEnableVertexAttribArray(VOXELSH_ATTR_COLOR);
-    glEnableVertexAttribArray(VOXELSH_ATTR_LIGHT);
-    glEnableVertexAttribArray(VOXELSH_ATTR_NORMAL);
-}
-
-void VoxelObject::disable()
-{
-    glDisableVertexAttribArray(VOXELSH_ATTR_NORMAL);
-    glDisableVertexAttribArray(VOXELSH_ATTR_LIGHT);
-    glDisableVertexAttribArray(VOXELSH_ATTR_COLOR);
-    glDisableVertexAttribArray(VOXELSH_ATTR_POSITION);
 }

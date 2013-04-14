@@ -17,9 +17,6 @@ public:
     void bufferData(byte* data, int elements);
 
 protected:
-    void enable();
-    void disable();
-
     GLVertexBuffer* voxelBuffer;
 };
 
