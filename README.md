@@ -1,4 +1,4 @@
 battlecraft
 ===========
 
-battlecraft
+C++/OpenGL Voxel Engine
