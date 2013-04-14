@@ -3,7 +3,7 @@
 #include "battlecraft.h"
 #include "Shader.h"
 
-#define LINESH_VERTEX_SIZE   6
+#define LINESH_VERTEX_SIZE   7
 #define LINESH_ATTR_POSITION 1
 #define LINESH_ATTR_COLOR    2
 

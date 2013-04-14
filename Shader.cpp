@@ -23,7 +23,7 @@ void Shader::use()
 bool Shader::compile()
 {
     if (compiled) return false;
-    printf("Compiling shader %d...", program);
+    printf("Compiling shader %d...\n", program);
     vertex->compile();
     fragment->compile();
 

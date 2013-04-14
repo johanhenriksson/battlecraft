@@ -73,8 +73,9 @@ void Game::run()
         currentTime = glfwGetTime();
         delta = (float)(currentTime - lastTime);
         lastTime = currentTime;
-
         update(delta);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         draw();
 
         camera->update(delta);
@@ -92,8 +93,6 @@ void Game::quit()
 
 void Game::draw()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     shader->use();
     shader->setUniformMatrix("view", camera->view());
     shader->setUniformMatrix("projection", camera->projection());
@@ -101,8 +100,8 @@ void Game::draw()
     chunk->draw(shader);
 
     linesh->use();
-    shader->setUniformMatrix("view", camera->view());
-    shader->setUniformMatrix("projection", camera->projection());
+    linesh->setUniformMatrix("view", camera->view());
+    linesh->setUniformMatrix("projection", camera->projection());
     bounds->draw(linesh);
 }
 

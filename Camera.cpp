@@ -17,7 +17,7 @@ Camera::Camera(int width, int height, float fov)
     this->height = height;
 
     float aspectRatio = width/height;
-    projectionMatrix = glm::perspective(fov, aspectRatio, 0.1f, 32.0f);
+    projectionMatrix = glm::perspective(fov, aspectRatio, 0.1f, 100.0f);
 }
 
 vec3 Camera::getPosition()
